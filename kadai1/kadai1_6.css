@@ -42,3 +42,7 @@
 .green{
     color: green;
 }
+.data{
+    text-align: center;
+    width: 50px;
+}
