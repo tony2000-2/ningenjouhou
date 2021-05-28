@@ -1,4 +1,5 @@
 'use script'
+
 //実際に使ってる関数
 //実験１
 function jikkenn1_2(){
