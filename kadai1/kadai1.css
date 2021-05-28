@@ -1,0 +1,28 @@
+@charset "UTF-8";
+#box{
+    width: 200px;
+    height: 200px;
+    font-size: 160px;
+    text-align: center;
+    border: 1px black solid;
+    margin-bottom: 50px;
+}
+.main{
+    display: flex;
+}
+.result{
+    width: 30%;
+}
+.hyouji{
+    width: 60%;
+}
+.hyouji p{
+    line-height: 10px;
+}
+#button{
+    width: 100px;
+    height: 30px;
+}
+.daiji{
+    color: red;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="kadai1.css">
+        <script src="kadai1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>人間工学課題１</h1>
+        <div class="main">        
+            <div class="result">
+                <h2>実行結果（msec）</h2>
+                <div id="kekka">
+
+                </div>
+            </div>
+            <div class="hyouji">
+                <p>Enterを押すとStartボタンがWaitに変わり、２～５秒後に下の四角に"A"が表示されます。</p>
+                <p></p>
+                <p>表示されたら"y"を押してください。</p>
+                <p>"y"が押されるまでにかかった時間を計測して表示します。</p>
+                <p>WaitがStartに戻ったら、再度Enterを押して計測できます。</p>
+                <p>（結果は試行回数分すべて記録されます）</p>
+                <p>＜注意＞</p>
+                <p>・即興で作ったので、Enterを押したら何も押さず待機お願いします。</p>
+                <p>　（複数回押したときの動作は保証しません）（多分2回連続でAが表示されると思う）</p>
+                <p>・Enterで動かないときは、Startボタンを押してもできます。</p>
+                <p class="daiji">・スマホには対応してません</p>
+                <p>ブラウザバック等すると記録は消えるので注意してください。</p>
+                <div id="box">
+
+                </div>
+                <input type="button" id="button" value="Start" onclick="jikkenn1_2()">
+            </div>
+        </div>
+        <script>
+            'use script'
+            document.body.addEventListener('keydown',
+            event => {
+            if (event.key === 'Enter') {
+                jikkenn1_2();
+            }
+            });
+        </script>
+
+    </body>
+</html>
