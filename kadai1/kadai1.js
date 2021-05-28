@@ -1,5 +1,4 @@
 'use script'
-
 //実際に使ってる関数
 //実験１
 function jikkenn1_2(){
@@ -107,13 +106,10 @@ function jikkenn2(){
         //表示後の処理
             document.addEventListener('keydown',(event) => {
             if(c===0){
-            if(event.key==='y'){
-            c = 1;
-
-        //計測終了位置
+                //計測終了位置
                 performance.mark("end");
 
-        //時間計算・表示
+            //時間計算・表示
             let time_all = performance.measure("allTime", "start", "end");
             let time_1 = performance.measure("func1Time", "start", "point1");
             let time_2 = performance.measure("func1Time", "point1", "end");
@@ -126,18 +122,32 @@ function jikkenn2(){
             console.log('表示処理前～入力：'+time_all.duration);
             console.log('表示処理時間：'+time_1.duration);
             console.log('表示処理後～入力：'+time_2.duration);
-        
+
             //アルファベットを消す
-            list_element.removeChild(list_element.lastChild);
+            list_element.removeChild(list_element.lastChild);            
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
-
+            if(event.key==='y'){
+            c = 1;
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[big_small][alpha_kind]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
             //ボタンの名前を戻す
             $('#button').val('Start');
             }else{
-            list_element.removeChild(list_element.lastChild);
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違えてますよ～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[big_small][alpha_kind]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+            //ボタンの名前を戻す
             $('#button').val('Start');
             }
             
@@ -170,38 +180,49 @@ function jikkenn2(){
         //表示後の処理
         document.addEventListener('keydown',(event) => {
             if(c==0){
-            if(event.key==='u'){
-            c = 1;
-
-        //計測終了位置
+            //計測終了位置
             performance.mark("end");
 
-        //時間計算・表示
-            let time_all = performance.measure("allTime", "start", "end");
-            let time_1 = performance.measure("func1Time", "start", "point1");
-            let time_2 = performance.measure("func1Time", "point1", "end");
+            //時間計算・表示
+                let time_all = performance.measure("allTime", "start", "end");
+                let time_1 = performance.measure("func1Time", "start", "point1");
+                let time_2 = performance.measure("func1Time", "point1", "end");
+    
+                //桁処理
+                realtime = Math.floor(time_2.duration*10)/10;
+                ragtime = Math.floor(time_1.duration*10)/10;
+                all_time = Math.floor(time_all.duration*10)/10;
+    
+                //全桁表示（コンソール内）
+                console.log('表示処理前～入力：'+time_all.duration);
+                console.log('表示処理時間：'+time_1.duration);
+                console.log('表示処理後～入力：'+time_2.duration);
+            
+                //アルファベットを消す
+                list_element.removeChild(list_element.lastChild);
+            if(event.key==='u'){
+            c = 1;
+             //結果の作成
+             result = `<tr>
+             <td class="data">${alpha[big_small][alpha_kind]}</td>
+             <td class="data">${realtime}</td>
+             <td class="data">${event.key}</td>
+             <td class="data">正</td>
+             </tr>`;
+             document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
-            //桁処理
-            realtime = Math.floor(time_2.duration*10)/10;
-            ragtime = Math.floor(time_1.duration*10)/10;
-            all_time = Math.floor(time_all.duration*10)/10;
-
-            //全桁表示（コンソール内）
-            console.log('表示処理前～入力：'+time_all.duration);
-            console.log('表示処理時間：'+time_1.duration);
-            console.log('表示処理後～入力：'+time_2.duration);
-        
-            //アルファベットを消す
-            list_element.removeChild(list_element.lastChild);
-
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
-
-            //ボタンの名前を戻す
-            $('#button').val('Start');
+             //ボタンの名前を戻す
+             $('#button').val('Start');
             }else{
-            list_element.removeChild(list_element.lastChild);
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違えてますよ～ </br>');
+             //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[big_small][alpha_kind]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+            //ボタンの名前を戻す
             $('#button').val('Start');
             }
             
@@ -264,44 +285,56 @@ function jikkenn3(){
     
         //表示後の処理
             document.addEventListener('keydown',(event) => {
+            //計測終了位置
+            performance.mark("end");
+
+            //時間計算・表示
+                let time_all = performance.measure("allTime", "start", "end");
+                let time_1 = performance.measure("func1Time", "start", "point1");
+                let time_2 = performance.measure("func1Time", "point1", "end");
+                //桁処理
+                realtime = Math.floor(time_2.duration*10)/10;
+                ragtime = Math.floor(time_1.duration*10)/10;
+                all_time = Math.floor(time_all.duration*10)/10;
+    
+                //全桁表示（コンソール内）
+                console.log('表示処理前～入力：'+time_all.duration);
+                console.log('表示処理時間：'+time_1.duration);
+                console.log('表示処理後～入力：'+time_2.duration);
+            
+                //アルファベットを消す
+                list_element1.removeChild(list_element1.lastChild);
+                list_element2.removeChild(list_element2.lastChild);
+    
             if(c===0){
             if(event.key==='y'){
             c = 1;
 
-        //計測終了位置
-                performance.mark("end");
-
-        //時間計算・表示
-            let time_all = performance.measure("allTime", "start", "end");
-            let time_1 = performance.measure("func1Time", "start", "point1");
-            let time_2 = performance.measure("func1Time", "point1", "end");
-            //桁処理
-            realtime = Math.floor(time_2.duration*10)/10;
-            ragtime = Math.floor(time_1.duration*10)/10;
-            all_time = Math.floor(time_all.duration*10)/10;
-
-            //全桁表示（コンソール内）
-            console.log('表示処理前～入力：'+time_all.duration);
-            console.log('表示処理時間：'+time_1.duration);
-            console.log('表示処理後～入力：'+time_2.duration);
-        
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
 
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
             
@@ -337,10 +370,6 @@ function jikkenn3(){
     
         //表示後の処理
         document.addEventListener('keydown',(event) => {
-            if(c==0){
-            if(event.key==='u'){
-            c = 1;
-
             //計測終了位置
             performance.mark("end");
 
@@ -361,23 +390,37 @@ function jikkenn3(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c==0){
+            if(event.key==='u'){
+            c = 1;
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
-
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
 
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
-            //ボタンの名前を戻す
-            $('#button').val('Start');
+           //結果の作成
+           result = `<tr>
+           <td class="data">${alpha[alpha_kind_1]}</td>
+           <td class="data">${alpha[alpha_kind_2]}</td>
+           <td class="data">${realtime}</td>
+           <td class="data">${event.key}</td>
+           <td class="data">誤</td>
+           </tr>`;
+           document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
+           //ボタンの名前を戻す
+           $('#button').val('Start');
 
             }
             
@@ -411,12 +454,6 @@ function jikkenn4(){
     let alpha_kind_1 = Math.floor(Math.random()*46);
     let alpha_kind_2 = Math.floor(Math.random()*46);
 
-    /*if(Math.floor(Math.random()*2)===0){
-        alpha_kind_2 = alpha_kind_1;
-    }*/
-    //console.log('alpha_kind_1:'+alpha_kind_1);
-    //console.log('alpha_kind_2:'+alpha_kind_2);
-
     //アルファベットを表示する場所を取得
     var list_element1 = document.getElementById("box1");
     var list_element2 = document.getElementById("box2");
@@ -438,14 +475,10 @@ function jikkenn4(){
     
         //表示後の処理
             document.addEventListener('keydown',(event) => {
-            if(c===0){
-            if(event.key==='y'){
-            c = 1;
-
-        //計測終了位置
+                //計測終了位置
                 performance.mark("end");
 
-        //時間計算・表示
+            //時間計算・表示
             let time_all = performance.measure("allTime", "start", "end");
             let time_1 = performance.measure("func1Time", "start", "point1");
             let time_2 = performance.measure("func1Time", "point1", "end");
@@ -462,24 +495,37 @@ function jikkenn4(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c===0){
+            if(event.key==='y'){
+            c = 1;
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
 
-
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
             
-
             }
             
         }
@@ -511,10 +557,6 @@ function jikkenn4(){
     
         //表示後の処理
         document.addEventListener('keydown',(event) => {
-            if(c==0){
-            if(event.key==='u'){
-            c = 1;
-
             //計測終了位置
             performance.mark("end");
 
@@ -535,23 +577,37 @@ function jikkenn4(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c==0){
+            if(event.key==='u'){
+            c = 1;
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
-
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
-
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
+
 
             }
             
@@ -587,11 +643,6 @@ function jikkenn5(){
 
 
 
-    /*if(Math.floor(Math.random()*2)===0){
-        alpha_kind_2 = alpha_kind_1;
-    }*/
-    //console.log('alpha_kind_1:'+alpha_kind_1);
-    //console.log('alpha_kind_2:'+alpha_kind_2);
 
     //アルファベットを表示する場所を取得
     var list_element1 = document.getElementById("box1");
@@ -614,11 +665,7 @@ function jikkenn5(){
     
         //表示後の処理
             document.addEventListener('keydown',(event) => {
-            if(c===0){
-            if(event.key==='y'){
-            c = 1;
-
-        //計測終了位置
+                //計測終了位置
                 performance.mark("end");
 
         //時間計算・表示
@@ -638,23 +685,38 @@ function jikkenn5(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c===0){
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
+            if(event.key==='y'){
+            c = 1;
+
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
 
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+            
             //ボタンの名前を戻す
             $('#button').val('Start');
-            
 
             }
             
@@ -687,10 +749,6 @@ function jikkenn5(){
     
         //表示後の処理
         document.addEventListener('keydown',(event) => {
-            if(c==0){
-            if(event.key==='u'){
-            c = 1;
-
             //計測終了位置
             performance.mark("end");
 
@@ -712,22 +770,37 @@ function jikkenn5(){
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
+            if(c==0){
+            if(event.key==='u'){
+            c = 1;
 
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
-
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
+
 
             }
             
@@ -773,11 +846,6 @@ function jikkenn6(){
     let hyouji1 = `<div class='${color_list[color1]}'>${alpha[alpha_kind_1]}</div>`
     let hyouji2 = `<div class='${color_list[color2]}'>${alpha[alpha_kind_2]}</div>`
 
-    /*if(Math.floor(Math.random()*2)===0){
-        alpha_kind_2 = alpha_kind_1;
-    }*/
-    //console.log('alpha_kind_1:'+alpha_kind_1);
-    //console.log('alpha_kind_2:'+alpha_kind_2);
 
     //アルファベットを表示する場所を取得
     var list_element1 = document.getElementById("box1");
@@ -801,14 +869,10 @@ function jikkenn6(){
     
         //表示後の処理
             document.addEventListener('keydown',(event) => {
-            if(c===0){
-            if(event.key==='y'){
-            c = 1;
-
-        //計測終了位置
+                //計測終了位置
                 performance.mark("end");
 
-        //時間計算・表示
+            //時間計算・表示
             let time_all = performance.measure("allTime", "start", "end");
             let time_1 = performance.measure("func1Time", "start", "point1");
             let time_2 = performance.measure("func1Time", "point1", "end");
@@ -825,23 +889,36 @@ function jikkenn6(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c===0){
+            if(event.key==='y'){
+            c = 1;
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
-
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data" class="${color_list[color1]}">${alpha[alpha_kind_1]}</td>
+            <td class="data" class="${color_list[color2]}">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
-            
 
             }
             
@@ -874,10 +951,6 @@ function jikkenn6(){
     
         //表示後の処理
         document.addEventListener('keydown',(event) => {
-            if(c==0){
-            if(event.key==='u'){
-            c = 1;
-
             //計測終了位置
             performance.mark("end");
 
@@ -898,24 +971,36 @@ function jikkenn6(){
             //アルファベットを消す
             list_element1.removeChild(list_element1.lastChild);
             list_element2.removeChild(list_element2.lastChild);
+            if(c==0){
+            if(event.key==='u'){
+            c = 1;
 
-            //結果の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend',realtime+' </br>');
-
+            //結果の作成
+            result = `<tr>
+            <td class="data">${alpha[alpha_kind_1]}</td>
+            <td class="data">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">正</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
 
             //ボタンの名前を戻す
             $('#button').val('Start');
-
 
             }else{
-            //アルファベットを消す
-            list_element1.removeChild(list_element1.lastChild);
-            list_element2.removeChild(list_element2.lastChild);
-            //不正解の表示
-            document.getElementById('kekka').insertAdjacentHTML('beforeend','間違ってますよ～～ </br>');
+            //結果の作成
+            result = `<tr>
+            <td class="data" class="${color_list[color1]}">${alpha[alpha_kind_1]}</td>
+            <td class="data" class="${color_list[color2]}">${alpha[alpha_kind_2]}</td>
+            <td class="data">${realtime}</td>
+            <td class="data">${event.key}</td>
+            <td class="data">誤</td>
+            </tr>`;
+            document.getElementById('kekka').insertAdjacentHTML('beforeend',result);
+
             //ボタンの名前を戻す
             $('#button').val('Start');
-
             }
             
             }
