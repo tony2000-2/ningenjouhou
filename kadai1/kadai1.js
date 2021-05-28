@@ -422,7 +422,7 @@ function jikkenn4(){
     var list_element2 = document.getElementById("box2");
 
     //２つが同じ種類のとき
-    if((alpha_kind_1<27&&alpha_kind_2<27)||(alpha_kind_1>26&&alpha_kind_2>26)){
+    if((alpha_kind_1<26&&alpha_kind_2<26)||(alpha_kind_1>25&&alpha_kind_2>25)){
         //実際の処理
             const printA = () => {
             c = 0;
@@ -598,7 +598,7 @@ function jikkenn5(){
     var list_element2 = document.getElementById("box2");
 
     //２つが同じ種類のとき
-    if((alpha_kind_1<11&&alpha_kind_2<11)||(alpha_kind_1>10&&alpha_kind_2>10&&alpha_kind_2<21&&alpha_kind_2<21)||(alpha_kind_1>20&&alpha_kind_2>20)){
+    if((alpha_kind_1<10&&alpha_kind_2<10)||(alpha_kind_1>9&&alpha_kind_2>9&&alpha_kind_2<20&&alpha_kind_2<20)||(alpha_kind_1>20&&alpha_kind_2>20)){
         //実際の処理
             const printA = () => {
             c = 0;
