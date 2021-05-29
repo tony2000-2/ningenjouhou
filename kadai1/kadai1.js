@@ -649,7 +649,7 @@ function jikkenn5(){
     var list_element2 = document.getElementById("box2");
 
     //２つが同じ種類のとき
-    if((alpha_kind_1<10&&alpha_kind_2<10)||(alpha_kind_1>9&&alpha_kind_2>9&&alpha_kind_2<20&&alpha_kind_2<20)||(alpha_kind_1>20&&alpha_kind_2>20)){
+    if(alpha_kind_1<10&&alpha_kind_2<10||alpha_kind_1>9&&alpha_kind_1<20&&alpha_kind_2>9&&alpha_kind_2<20||alpha_kind_1>19&&alpha_kind_2>19){
         //実際の処理
             const printA = () => {
             c = 0;
